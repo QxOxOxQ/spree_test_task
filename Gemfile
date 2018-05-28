@@ -39,6 +39,7 @@ gem 'spree_gateway', '~> 3.3'
 gem 'sidekiq'
 gem 'slim'
 gem 'redis-rails'
+gem 'aasm'
 
 
 group :development, :test do

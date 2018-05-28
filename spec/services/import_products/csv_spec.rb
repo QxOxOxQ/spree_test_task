@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'ImportProducts::CSV', type: :service do
+RSpec.describe ImportProducts::CSV, type: :service do
 
   let!(:csv) { File.open(File.join(Rails.root, 'spec', 'files', 'sample.csv')) }
 
