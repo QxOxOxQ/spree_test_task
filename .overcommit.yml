@@ -1,0 +1,35 @@
+PreCommit:
+  RuboCop:
+    enabled: true
+    command: ["bundle", "exec", "rubocop"] # Invoke within Bundler context
+    on_warn: fail
+
+  SpecsExistsHelper:
+    enabled: true
+    description: "Checking for spec files"
+
+  TrailingWhitespace:
+     enabled: true
+     description: "Trailing whitespace detected"
+     exclude: "app/assets/**/*"
+
+  SlimLint:
+    enabled: true
+    description: "Analyze with slim-lint"
+    command: ["bundle", "exec", "slim-lint"]
+    include: "**/*.slim"
+    on_warn: fail
+
+CommitMsg:
+  RussianNovel:
+    enabled: true
+    description: "Check length of commit message"
+    quiet: false
+    required: true
+
+  TextWidth:
+    enabled: true
+    required: true
+    description: "Check text width"
+    max_subject_width: 60
+    max_body_width: 72

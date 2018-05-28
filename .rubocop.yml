@@ -1,0 +1,99 @@
+require: rubocop-rspec
+
+inherit_gem:
+  rubocop-rails:
+    - config/rails.yml
+require: rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - app/assets/images/**/*
+    - app/assets/javascripts/**/*
+    - app/view/pages/*
+    - bin/*
+    - Rakefile
+    - config/**/*
+    - notepad/**/*
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - test/**/*
+    - db/**/*
+    - deploy/*.rb
+    - deploy.rb
+    - app/helpers/bootstrap_flash_helper.rb
+    - app/helpers/bootstrap_deprecated_helper.rb
+    - app/services/stat/reporting/general.rb
+    - .git-hooks/**/*
+    - files/**/*
+
+Lint/UnneededDisable:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Exclude:
+    - app/views/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - app/views/**/*
+    - Guardfile
+    - lib/tasks/auto_annotate_models.rake
+
+Style/BracesAroundHashParameters:
+  Exclude:
+    - app/views/**/*
+
+OutputSafety:
+  Enabled: false
+
+Metrics/LineLength:
+  # This will disable the rule completely, regardless what other options you put
+  Enabled: false
+  # Change the default 80 chars limit value
+  Max: 200
+  # If you want the rule only apply to a specific folder/file
+  Include:
+    - 'Gemfile'
+
+Metrics/BlockLength:
+  Max: 120
+  Include:
+    - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Max: 25
+
+RSpec/FilePath:
+  Enabled: false
+  CustomTransform:
+    RuboCop: rubocop
+    RSpec: rspec
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+  ConsistentQuotesInMultiline: true
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+Documentation:
+  Enabled: false
+
+AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
