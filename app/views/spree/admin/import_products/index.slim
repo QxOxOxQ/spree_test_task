@@ -1,5 +1,5 @@
-=form_for admin_import_products_path(@new_import_product), method: :post do |f|
-  =f.file_field :file
+=form_for admin_import_products_path(@new_import_product), as: :import_product do |f|
+  =f.file_field :import
   =f.submit 'submit'
 
 
@@ -8,9 +8,9 @@ table
     tr
       th lp
       th state
-      th updated date
+      th errors
   - @import_products.each_with_index do |import_product, index|
     tr
-      td index + 1
-      td import_product.state
-      td import_product.updated_at
+      td =index + 1
+      td =import_product.state
+      td =import_product.error_text if import_product.error_text.present?

@@ -10,19 +10,33 @@ module ImportProducts
 
     def initialize(file)
       @file = file
+      @errors = []
     end
 
     def call
       import
+      success? ? :success : errors
     end
+
+    def errors
+      @errors
+    end
+
 
     private
 
+      def success?
+        errors.empty?
+      end
+
       def import
-        ::CSV.foreach(@file.path, headers: true, skip_blanks: true, col_sep: ';') do |row|
+        ::CSV.foreach(@file.path, headers: true, skip_blanks: true, col_sep: ';').with_index do |row, index|
           next if row.to_h.compact.empty?
           product_hash = prepare_product(row.to_hash)
-          ::Spree::Product.create!(product_hash)
+          product = ::Spree::Product.new(product_hash)
+          unless product.save
+            errors << "index: #{index + 1}; #{product.errors.full_messages}"
+          end
         end
       end
 

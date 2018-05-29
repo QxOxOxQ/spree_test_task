@@ -10,7 +10,7 @@ class ImportProduct < ApplicationRecord
 
   aasm column: 'state' do
     state :waiting, initial: true
-    state :running, :done
+    state :running, :done, :done_with_errors
 
     event :run do
       transitions from: :waiting, to: :running
@@ -20,5 +20,8 @@ class ImportProduct < ApplicationRecord
       transitions from: :running, to: :done
     end
 
+    event :finish_with_errors do
+      transitions from: :running, to: :done_with_errors
+    end
   end
 end
