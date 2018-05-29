@@ -1,0 +1,16 @@
+=form_for admin_import_products_path(@new_import_product), method: :post do |f|
+  =f.file_field :file
+  =f.submit 'submit'
+
+
+table
+  thead
+    tr
+      th lp
+      th state
+      th updated date
+  - @import_products.each_with_index do |import_product, index|
+    tr
+      td index + 1
+      td import_product.state
+      td import_product.updated_at
