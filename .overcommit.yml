@@ -13,13 +13,6 @@ PreCommit:
      description: "Trailing whitespace detected"
      exclude: "app/assets/**/*"
 
-  SlimLint:
-    enabled: true
-    description: "Analyze with slim-lint"
-    command: ["bundle", "exec", "slim-lint"]
-    include: "**/*.slim"
-    on_warn: fail
-
 CommitMsg:
   RussianNovel:
     enabled: true
